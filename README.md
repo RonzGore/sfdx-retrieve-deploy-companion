@@ -63,7 +63,7 @@ METADATA TYPES THAT CAN BE PASSED AS AN ARGUMENT AGAINST THE NAME PARAMETER
 
 ```
 
-_See code: [src/commands/gs/source/retrieve.ts](https://github.com/rohanatgwcs/sfdx-selective-retrieve-deploy/blob/master/src/commands/gs/source/retrieve.ts)_
+_See code: [src/commands/gs/source/retrieve.ts](https://github.com/rohanatgwcs/sfdx-retrieve-deploy-companion/blob/master/src/commands/gs/source/retrieve.ts)_
 
 ### `sfdx gs:source:deploy:module`
 
@@ -111,7 +111,7 @@ EXAMPLE
 
 ```
 
-_See code: [src/commands/gs/source/deploy/module.ts](https://github.com/rohanatgwcs/sfdx-selective-retrieve-deploy/blob/master/src/commands/gs/source/deploy/module.ts)_
+_See code: [src/commands/gs/source/deploy/module.ts](https://github.com/rohanatgwcs/sfdx-retrieve-deploy-companion/blob/master/src/commands/gs/source/deploy/module.ts)_
 
 ### `sfdx gs:source:deploy:dir`
 
@@ -138,7 +138,7 @@ EXAMPLE
   //validates the deployment of all the permission sets from the directory myFolder/PermissionSets on MyTargetOrg
 
 ```
-_See code: [src/commands/gs/source/deploy/dir.ts](https://github.com/rohanatgwcs/sfdx-selective-retrieve-deploy/blob/master/src/commands/gs/source/deploy/dir.ts)_
+_See code: [src/commands/gs/source/deploy/dir.ts](https://github.com/rohanatgwcs/sfdx-retrieve-deploy-companion/blob/master/src/commands/gs/source/deploy/dir.ts)_
 
 ### `sfdx gs:source:deploy:cmp`
 
@@ -165,7 +165,7 @@ EXAMPLE
   //validates the deployment of MyClass to a default target org deployment of all the permission sets from the directory myFolder/PermissionSets on MyTargetOrg
   
 ```
-_See code: [src/commands/gs/source/deploy/cmp.ts](https://github.com/rohanatgwcs/sfdx-selective-retrieve-deploy/blob/master/src/commands/gs/source/deploy/cmp.ts)_
+_See code: [src/commands/gs/source/deploy/cmp.ts](https://github.com/rohanatgwcs/sfdx-retrieve-deploy-companion/blob/master/src/commands/gs/source/deploy/cmp.ts)_
 
 ## Motivation behind this plugin:
 ``` 
@@ -191,28 +191,11 @@ Note: Both these commands work equally well with sandboxes and scratch orgs as l
 
 ```
 
-## Change Log
+## Additional Help notes
 
 ```
-### Version 1.2.0  
-1. Support for type based retrieval of components  
-sfdx gs:source:pull --type PermissionSet --targetdir app/main/default --includedir  
-
-2. Support for retrieval of components in the -meta.xml format by default, earlier it  
-used to be mdapi format .xml by default. MDAPI format can still be retrived/pulled by
-passing the --mdapiformat(-m) format.
-
-### Version 1.2.1
-1. Support for file and folder push/deploy which are not in source format  
-2. Support for validating push/deploy
-
-### Version 1.2.2
-Minor fixes: removal of logs and temp folders.
-
-### Version 1.3.0
-Support for json based simple dependency management
-e.g. sfdx gs:source:push -m force-app -i -u MyScratchOrg -p config/dependencies.json
-A typical dependency.json file will look like
+e.g. sfdx gs:source:deploy:moduel -u MyScratchOrg -p config/dependencies.json
+A typical dependencies.json file will for the command above looks like
 {
     "packageDirectories": [
       {
@@ -227,17 +210,5 @@ A typical dependency.json file will look like
 }
 
 This means force-app is dependant on data-model and log-lib modules.
-
-### Version 1.4.0
-1. Support for copying the mdpaiPackage generated as part of the push process to a specified location passed as a param/flag otherwise to the root of the project folder.
-2. Enhancements to the dependency management, no need to pass the module name
-e.g. sfdx gs:source:push -u MyScratchOrg -p config/dependencies.json
-
-### Version 2.0.0
-Plugin overhaul. A completely new set of commands:
-1. __gs:source:push__ is broken dowm and enhanced to __gs:source:deploy:module__, __gs:source:deploy:dir__ and __gs:source:deploy:cmp__ commands. 
-2. __gs:source:pull becomes __gs:source:retrieve__.
-Read more about them in their respective help sections above. push and pull seems to be confusing as
-these commands do not take care of any source tracking and thus the name push and pull were not doing any justice.
 
 ```
